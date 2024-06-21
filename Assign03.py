@@ -1,26 +1,22 @@
 from random import randint
 
+# Generate values for randint
+random1, random2, random3 = (randint(0, 3) for _ in range(3))
+
+# Welcome message of the game
 print("\nWelcome to the Lottery Game!\n")
 
-result_1 = randint(0, 9)
-result_2 = randint(0, 9)
-result_3 = randint(0, 9)
+# Get the user input
+user_bets = [int(input(f"{bet} Number: ")) for bet in ["First", "Second", "Third"]]
 
-user_bet1 = int(input("First Bet Number: "))
-user_bet2 = int(input("Second Bet Number: "))
-user_bet3 = int(input("Third Bet Number: "))
+# Print bets and results
+print("Your Bets: ", user_bets)
+print("Result: ", random1, random2, random3)
 
-print("Bet: ", user_bet1, user_bet2, user_bet3)
-print("Result: ", result_1, result_2, result_3)
-
-if user_bet1 == result_1 and user_bet2 == result_2 and user_bet3 == result_3:
+# Outcome of the game
+if user_bets == [random1, random2, random3]:
     print("\nYou Win!")
-
-elif(user_bet1 == result_1 and user_bet2 == result_3 and user_bet3 == result_2) or \
-    (user_bet2 == result_3 and user_bet2 == result_1 and user_bet3 == result_2) or \
-    (user_bet1 == result_2 and user_bet2 == result_1 and user_bet3 == result_3) or \
-    (user_bet1 == result_3 and user_bet2 == result_1 and user_bet3 == result_2):
+elif set(user_bets) == set([random1, random2, random3]):
     print("\nYou Partially Win!")
-
 else:
     print("\nYou Lose!")
